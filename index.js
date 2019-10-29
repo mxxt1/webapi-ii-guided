@@ -1,6 +1,8 @@
 const express = require('express');
 
 const Hubs = require('./hubs/hubs-model.js');
+
+//step 1
 const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
@@ -17,6 +19,8 @@ server.get('/', (req, res) => {
 // add an endpoint that returns all the messages for a hub
 // add an endpoint for adding new message to a hub
 
+
+//step 2
 server.use('/api/hubs', hubsRouter);
 
 server.listen(4000, () => {

@@ -1,10 +1,14 @@
+//step 3 --> create the router and declare the DB/data source
+
 const router = require('express').Router();
+
+const Hubs = require('./hubs-model');
 
 // a router can have route/request handlers and middleware
 
 
   
-  server.get('/', (req, res) => {
+  router.get('/', (req, res) => { //4 rename server to router
     Hubs.find(req.query)
     .then(hubs => {
       res.status(200).json(hubs);
@@ -18,7 +22,7 @@ const router = require('express').Router();
     });
   });
   
-  server.get('/:id', (req, res) => {
+  router.get('/:id', (req, res) => {
     Hubs.findById(req.params.id)
     .then(hub => {
       if (hub) {
@@ -36,7 +40,7 @@ const router = require('express').Router();
     });
   });
   
-  server.post('/', (req, res) => {
+  router.post('/', (req, res) => {
     Hubs.add(req.body)
     .then(hub => {
       res.status(201).json(hub);
@@ -50,7 +54,7 @@ const router = require('express').Router();
     });
   });
   
-  server.delete('/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     Hubs.remove(req.params.id)
     .then(count => {
       if (count > 0) {
@@ -68,7 +72,7 @@ const router = require('express').Router();
     });
   });
   
-  server.put('/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     const changes = req.body;
     Hubs.update(req.params.id, changes)
     .then(hub => {
